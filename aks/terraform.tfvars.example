@@ -1,0 +1,5 @@
+location = "East US"
+resource_group_name = "rg-tf-aks-demo"
+cluster_name = "REPLACE_WITH_UNIQUE_AKS_NAME"
+node_count = 2
+vm_size = "Standard_D2s_v5"
