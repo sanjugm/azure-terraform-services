@@ -1,0 +1,3 @@
+location = "East US"
+resource_group_name = "rg-tf-keyvault-demo"
+key_vault_name = "REPLACE_WITH_UNIQUE_KEYVAULT_NAME"
