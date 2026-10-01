@@ -11,7 +11,7 @@ resource "azurerm_virtual_network" "sanju_vnet" {
 resource "azurerm_subnet" "aks" {
   name = "aks-subnet"
   resource_group_name = var.resource_group_name
-  virtual_network_name = azurerm_virtual_network.this.name
+  virtual_network_name = azurerm_virtual_network.aks_vnet.name
   address_prefixes = ["10.20.0.0/20"]
 }
 resource "azurerm_kubernetes_cluster" "sanju" {
@@ -24,7 +24,7 @@ resource "azurerm_kubernetes_cluster" "sanju" {
     name = "system"
     node_count = var.node_count
     vm_size = var.vm_size
-    vnet_subnet_id = azurerm_subnet.aks.id
+    vnet_subnet_id = azurerm_subnet.aks_subnet.id
   }
 
   identity { type = "SystemAssigned" }
