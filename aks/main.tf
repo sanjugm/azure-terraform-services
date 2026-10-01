@@ -1,8 +1,8 @@
-resource "azurerm_resource_group" "this" {
+resource "azurerm_resource_group" "sanju" {
   name = var.resource_group_name
   location = var.location
 }
-resource "azurerm_virtual_network" "this" {
+resource "azurerm_virtual_network" "sanju_vnet" {
   name = "${var.cluster_name}-vnet"
   location = var.location
   resource_group_name = var.resource_group_name
@@ -14,7 +14,7 @@ resource "azurerm_subnet" "aks" {
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes = ["10.20.0.0/20"]
 }
-resource "azurerm_kubernetes_cluster" "this" {
+resource "azurerm_kubernetes_cluster" "sanju" {
   name = var.cluster_name
   location = var.location
   resource_group_name = var.resource_group_name
