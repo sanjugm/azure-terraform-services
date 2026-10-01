@@ -1,4 +1,0 @@
-location = "East US"
-resource_group_name = "rg-tf-storage-demo"
-storage_account_name = "REPLACE_WITH_UNIQUE_LOWERCASE_NAME"
-container_name = "demo-container"
