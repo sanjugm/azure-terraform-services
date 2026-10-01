@@ -1,40 +1,25 @@
 terraform {
   required_version = ">= 1.6.0"
-
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 4.0"
-    }
-  }
+  required_providers { azurerm = { source = "hashicorp/azurerm", version = "~> 4.0" } }
 }
-
-provider "azurerm" {
-  features {}
-}
+provider "azurerm" { features {} }
 
 resource "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
+  name = var.resource_group_name
   location = var.location
 }
-
 resource "azurerm_storage_account" "this" {
-  name                     = var.storage_account_name
-  resource_group_name      = var.resource_group_name
-  location                 = var.location
-  account_tier             = "Standard"
+  name = var.storage_account_name
+  resource_group_name = var.resource_group_name
+  location = var.location
+  account_tier = "Standard"
   account_replication_type = "LRS"
-
-  min_tls_version                 = "TLS1_2"
+  min_tls_version = "TLS1_2"
   allow_nested_items_to_be_public = false
-
-  blob_properties {
-    versioning_enabled = true
-  }
+  blob_properties { versioning_enabled = true }
 }
-
 resource "azurerm_storage_container" "this" {
-  name                  = var.container_name
-  storage_account_id    = azurerm_storage_account.this.id
+  name = var.container_name
+  storage_account_id = azurerm_storage_account.this.id
   container_access_type = "private"
 }
