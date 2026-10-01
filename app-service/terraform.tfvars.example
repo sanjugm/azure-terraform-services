@@ -1,4 +1,0 @@
-location = "East US"
-resource_group_name = "rg-tf-appservice-demo"
-app_name = "REPLACE_WITH_UNIQUE_APP_NAME"
-sku_name = "B1"
