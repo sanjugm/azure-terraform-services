@@ -1,27 +1,27 @@
-resource "azurerm_resource_group" "this" {
+resource "azurerm_resource_group" "vm_rg" {
   name = var.resource_group_name
   location = var.location
 }
-resource "azurerm_virtual_network" "this" {
+resource "azurerm_virtual_network" "vm_vnet" {
   name = "${var.vm_name}-vnet"
   address_space = ["10.10.0.0/16"]
   location = var.location
   resource_group_name = var.resource_group_name
 }
-resource "azurerm_subnet" "this" {
+resource "azurerm_subnet" "vm_subnet" {
   name = "${var.vm_name}-subnet"
   resource_group_name = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vm_vnet.name
   address_prefixes = ["10.10.1.0/24"]
 }
-resource "azurerm_public_ip" "this" {
+resource "azurerm_public_ip" "vm_public_ip" {
   name = "${var.vm_name}-pip"
   location = var.location
   resource_group_name = var.resource_group_name
   allocation_method = "Static"
   sku = "Standard"
 }
-resource "azurerm_network_security_group" "this" {
+resource "azurerm_network_security_group" "vm_nsg" {
   name = "${var.vm_name}-nsg"
   location = var.location
   resource_group_name = var.resource_group_name
@@ -37,7 +37,7 @@ resource "azurerm_network_security_group" "this" {
     destination_address_prefix = "*"
   }
 }
-resource "azurerm_network_interface" "this" {
+resource "azurerm_network_interface" "vm_nic" {
   name = "${var.vm_name}-nic"
   location = var.location
   resource_group_name = var.resource_group_name
@@ -48,11 +48,11 @@ resource "azurerm_network_interface" "this" {
     public_ip_address_id = azurerm_public_ip.vm_public_ip.id
   }
 }
-resource "azurerm_network_interface_security_group_association" "this" {
+resource "azurerm_network_interface_security_group_association" "vm_nsg_association" {
   network_interface_id = azurerm_network_interface.vm_nic.id
   network_security_group_id = azurerm_network_security_group.vm_nsg.id
 }
-resource "azurerm_linux_virtual_machine" "this" {
+resource "azurerm_linux_virtual_machine" "linux_vm" {
   name = var.vm_name
   resource_group_name = var.resource_group_name
   location = var.location
