@@ -1,15 +1,15 @@
-resource "azurerm_resource_group" "this" {
+resource "azurerm_resource_group" "appservice_rg" {
   name = var.resource_group_name
   location = var.location
 }
-resource "azurerm_service_plan" "this" {
+resource "azurerm_service_plan" "app_service_plan" {
   name = "${var.app_name}-plan"
   location = var.location
   resource_group_name = var.resource_group_name
   os_type = "Linux"
   sku_name = var.sku_name
 }
-resource "azurerm_linux_web_app" "this" {
+resource "azurerm_linux_web_app" "linux_web_app" {
   name = var.app_name
   location = var.location
   resource_group_name = var.resource_group_name
