@@ -1,6 +1,0 @@
-location = "East US"
-resource_group_name = "rg-tf-vm-demo"
-vm_name = "tf-vm-demo"
-admin_username = "azureuser"
-admin_password = "CHANGE_ME"
-ssh_public_key = ""
